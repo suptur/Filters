@@ -208,7 +208,7 @@ output_folder = "data"
 os.makedirs(output_folder, exist_ok=True)  # Create folder if not exists
 
 # Output file path
-output_file = os.path.join(output_folder, "merged.txt")
+output_file = os.path.join(output_folder, "Adguard+Ublock.txt")
 
 # Function to download a single file
 def download_txt(url):
