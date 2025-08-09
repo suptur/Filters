@@ -1,0 +1,35 @@
+name: Adguard+Ublock
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight UTC
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Allow commits
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Python script
+        run: python Adguard+Ublock-all.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Automated daily update" || echo "No changes to commit"
+          git push
