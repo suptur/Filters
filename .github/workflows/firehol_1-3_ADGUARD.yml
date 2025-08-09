@@ -1,4 +1,4 @@
-name: firehol_1-3
+name: firehol_1-3_ADGUARD
 
 on:
   schedule:
@@ -24,7 +24,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Python script
-        run: python firehol_1-3.py
+        run: python Firehol_1-3_adguard.py
 
       - name: Commit and push changes
         run: |
