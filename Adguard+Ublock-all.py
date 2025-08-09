@@ -1,5 +1,5 @@
 import requests
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import os
 
 # List of text file URLs
 urls = [
@@ -200,32 +200,24 @@ urls = [
 "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/ubol-filters.txt",
 #"https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt",
     # Add more URLs here
-
 ]
 
-output_file = "Adguard+Ublock-all.txt"
+# Folder path inside your repo
+output_folder = "Filters"
+os.makedirs(output_folder, exist_ok=True)  # Create folder if it doesn't exist
 
-# Function to download a single file
-def download_txt(url):
-    try:
-        response = requests.get(url, timeout=15)
-        response.raise_for_status()
-        print(f"✅ Downloaded: {url}")
-        return response.text
-    except requests.RequestException as e:
-        print(f"❌ Failed: {url} — {e}")
-        return ""
+# Output file path
+output_file = os.path.join(output_folder, "Adguard+Ublock.txt")
 
-# Download all files concurrently
-contents = []
-with ThreadPoolExecutor(max_workers=15) as executor:  # Adjust max_workers if needed
-    futures = [executor.submit(download_txt, url) for url in urls]
-    for future in as_completed(futures):
-        contents.append(future.result())
+# Create or clear the output file
+with open(output_file, "w", encoding="utf-8") as outfile:
+    for url in urls:
+        try:
+            print(f"Downloading: {url}")
+            response = requests.get(url, timeout=15)
+            response.raise_for_status()
+            outfile.write(response.text.strip() + "\n")
+        except requests.RequestException as e:
+            print(f"Failed to download {url}: {e}")
 
-# Merge and save
-merged_content = "\n".join([c.strip() for c in contents if c.strip()])
-with open(output_file, "w", encoding="utf-8") as f:
-    f.write(merged_content)
-
-print(f"\n✅ All downloads complete. Merged file saved as '{output_file}'")
+print(f"\n✅ Merged file saved as '{output_file}'")
