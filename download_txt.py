@@ -3,10 +3,9 @@ import requests
 # List of URLs to download
 urls = [
     "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt",
-    # Add more URLs as needed
+    # Add more URLs here
 ]
 
-# Download files
 for url in urls:
     filename = url.split("/")[-1]  # Save as last part of URL
     print(f"Downloading {url} → {filename}")
