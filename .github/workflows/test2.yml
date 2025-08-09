@@ -1,9 +1,9 @@
-name: Adguard+Ublock
+name: Adguard+ublock
 
 on:
   schedule:
     - cron: "0 0 * * *"  # Runs daily at midnight UTC
-  workflow_dispatch: # Allow manual runs
+  workflow_dispatch:     # Allow manual runs
 
 jobs:
   download:
@@ -12,35 +12,29 @@ jobs:
       contents: write  # Allow commits
 
     steps:
+      # 1️⃣ Checkout full repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2️⃣ Set up Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # 4️⃣ Run your Python script
       - name: Run Python script
         run: python Adguard+Ublock-all.py
 
-          # 2️⃣ Extract and push only the specific folder
-      - name: Push only specific folder to another branch
+      # 5️⃣ Commit & push ONLY Filters folder changes
+      - name: Commit and push changes in Filters
         run: |
-          # CHANGE THIS → path to the folder you want to push
-          FOLDER="Filters"
-          
-          # CHANGE THIS → branch name in this repo where the folder will be pushed
-          TARGET_BRANCH="Filters-branch"
-
-          # Git config for commit author (GitHub Actions bot)
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Create a temporary branch with ONLY the folder's history
-          git subtree split --prefix=$FOLDER -b temp-branch
-          
-          # Push the temp branch to the target branch, overwriting old contents
-          git push -f origin temp-branch:$Filters-branch
+          git add Filters
+          git commit -m "Automated daily update for Filters" || echo "No changes to commit"
+          git push
