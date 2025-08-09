@@ -223,7 +223,7 @@ def download_txt(url):
 
 # Download all files concurrently
 contents = []
-with ThreadPoolExecutor(max_workers=5) as executor:
+with ThreadPoolExecutor(max_workers=15) as executor:
     futures = [executor.submit(download_txt, url) for url in urls]
     for future in as_completed(futures):
         contents.append(future.result())
