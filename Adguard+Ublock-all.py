@@ -203,7 +203,7 @@ urls = [
 
 ]
 
-output_file = "merged.txt"
+output_file = "Adguard+Ublock-all.txt"
 
 # Function to download a single file
 def download_txt(url):
