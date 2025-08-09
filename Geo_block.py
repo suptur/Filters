@@ -77,7 +77,7 @@ for filename in os.listdir(download_folder):
                 merged_lines.add(convert_line(line))
 
 # Save updated file with unique lines and remove lines starting with "!"
-merged_unique_file = "Country-block-3.txt"
+merged_unique_file = "Country-block-3_ADGUARD.txt"
 with open(merged_unique_file, "w", encoding="utf-8") as file:
     for line in sorted(merged_lines):  # Sort lines alphabetically
         file.write(line + "\n")
@@ -85,4 +85,5 @@ with open(merged_unique_file, "w", encoding="utf-8") as file:
 # Delete downloaded files
 for filename in os.listdir(download_folder):
     file_path = os.path.join(download_folder, filename)
+
     os.remove(file_path)
