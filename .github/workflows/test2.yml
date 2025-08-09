@@ -26,13 +26,21 @@ jobs:
       - name: Run Python script
         run: python Adguard+Ublock-all.py
 
-      - name: Commit and push changes
+          # 2️⃣ Extract and push only the specific folder
+      - name: Push only specific folder to another branch
         run: |
+          # CHANGE THIS → path to the folder you want to push
           FOLDER="Filters"
+          
+          # CHANGE THIS → branch name in this repo where the folder will be pushed
           TARGET_BRANCH="Filters-branch"
+
+          # Git config for commit author (GitHub Actions bot)
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Automated daily update" || echo "No changes to commit"
+          
+          # Create a temporary branch with ONLY the folder's history
           git subtree split --prefix=$FOLDER -b temp-branch
+          
+          # Push the temp branch to the target branch, overwriting old contents
           git push -f origin temp-branch:$TARGET_BRANCH
