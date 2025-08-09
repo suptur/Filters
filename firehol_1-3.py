@@ -21,7 +21,7 @@ download_folder = "downloads_ipsets"
 
 # Path inside GitHub repo to store final firehol.txt
 output_folder_in_repo = os.path.join("Filters")  # This will be lists/firehol.txt
-output_file_path = os.path.join(output_folder_in_repo, "firehol_1-3.txt")
+output_file_path = os.path.join(output_folder_in_repo, "firehol_1-3_ADGUARD.txt")
 
 # ===== FUNCTIONS =====
 def download_file(url, dest_folder):
