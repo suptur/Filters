@@ -40,7 +40,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
           # Create a temporary branch with ONLY the folder's history
-          git subtree split --prefix=$Filters -b temp-branch
+          git subtree split --prefix=$FOLDER -b temp-branch
           
           # Push the temp branch to the target branch, overwriting old contents
           git push -f origin temp-branch:$Filters-branch
