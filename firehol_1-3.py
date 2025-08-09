@@ -2,12 +2,12 @@ import requests
 import os
 import logging
 from tqdm import tqdm
-import re
 import threading
 
 # Configure logging
 logging.basicConfig(filename='script.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# ===== SETTINGS =====
 # List of URLs to download
 urls = [
 "https://iplists.firehol.org/files/firehol_level1.netset",
@@ -16,8 +16,16 @@ urls = [
     # Add more URLs here
 ]
 
-# Function to download a file and show progress
+# Where to store temporary downloaded files
+download_folder = "downloads_ipsets"
+
+# Path inside GitHub repo to store final firehol.txt
+output_folder_in_repo = os.path.join("Filters")  # This will be lists/firehol.txt
+output_file_path = os.path.join(output_folder_in_repo, "firehol_1-3.txt")
+
+# ===== FUNCTIONS =====
 def download_file(url, dest_folder):
+    """Download a single file with a progress bar."""
     try:
         filename = url.split("/")[-1]
         filepath = os.path.join(dest_folder, filename)
@@ -31,52 +39,48 @@ def download_file(url, dest_folder):
     except Exception as e:
         logging.error(f"Failed to download file from {url}: {str(e)}")
 
-# Function to convert IPv4 address to "||ipv4 address^" format
 def convert_line(line):
+    """Convert IPv4 address to uBlock-style ||address^ format."""
     return "||" + line.strip() + "^"
-    return line.strip()
 
-# Function to download files concurrently
 def download_files(urls, dest_folder, max_concurrent=100):
+    """Download multiple files concurrently."""
     threads = []
     for url in urls:
         thread = threading.Thread(target=download_file, args=(url, dest_folder))
         threads.append(thread)
         thread.start()
 
-        # Limit the number of concurrent threads
         if len(threads) >= max_concurrent:
             for thread in threads:
                 thread.join()
             threads = []
 
-    # Wait for remaining threads to finish
     for thread in threads:
         thread.join()
 
-# Download files and merge into a single file
-merged_lines = set()  # Using a set for faster duplicate removal
-download_folder = "downloads_ipsets"
-os.makedirs(download_folder, exist_ok=True)
+# ===== MAIN SCRIPT =====
+if __name__ == "__main__":
+    os.makedirs(download_folder, exist_ok=True)          # Temp folder for downloads
+    os.makedirs(output_folder_in_repo, exist_ok=True)    # Ensure output folder exists
 
-# Download files concurrently
-download_files(urls, download_folder)
+    # Download files
+    download_files(urls, download_folder)
 
-# Process downloaded files
-for filename in os.listdir(download_folder):
-    filepath = os.path.join(download_folder, filename)
-    with open(filepath, "r", encoding="utf-8") as file:
-        for line in file:
-            if not line.startswith(("@@", "!", "#")):  # Exclude lines starting with "@@", "!", "#"
-                merged_lines.add(convert_line(line))
+    # Process and merge files
+    merged_lines = set()
+    for filename in os.listdir(download_folder):
+        filepath = os.path.join(download_folder, filename)
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as file:
+            for line in file:
+                if not line.startswith(("@@", "!", "#")) and line.strip():
+                    merged_lines.add(convert_line(line))
 
-# Save updated file with unique lines and remove lines starting with "!"
-merged_unique_file = "firehol_1-3.txt"
-with open(merged_unique_file, "w", encoding="utf-8") as file:
-    for line in sorted(merged_lines):  # Sort lines alphabetically
-        file.write(line + "\n")
+    # Save merged file to the GitHub repo folder
+    with open(output_file_path, "w", encoding="utf-8") as file:
+        for line in sorted(merged_lines):
+            file.write(line + "\n")
 
-# Delete downloaded files
-for filename in os.listdir(download_folder):
-    file_path = os.path.join(download_folder, filename)
-    os.remove(file_path)
+    # Cleanup downloaded temp files
+    for filename in os.listdir(download_folder):
+        os.remove(os.path.join(download_folder, filename))
