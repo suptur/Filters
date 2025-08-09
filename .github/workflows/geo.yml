@@ -1,35 +1,35 @@
-name: Country-block
+name: Country-block-3_ADGUARD
 
 on:
   schedule:
-    - cron: '0 10 * * *' # Run every day at midnight (you can adjust the schedule as needed)
+    - cron: "0 10 * * *"  # Runs daily at midnight UTC
+  workflow_dispatch: # Allow manual runs
 
 jobs:
-  build:
+  download:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Allow commits
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests tqdm
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-    - name: Run script
-      run: python Geo_block.py
+      - name: Run Python script
+        run: python Geo_block.py
 
-    - name: Commit and push changes
-      run: |
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
-        git add .
-        git commit -m "Automated update of merged_unique.txt"
-        git push
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Automated daily update" || echo "No changes to commit"
+          git push
