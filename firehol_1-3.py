@@ -72,7 +72,7 @@ for filename in os.listdir(download_folder):
                 merged_lines.add(convert_line(line))
 
 # Save updated file with unique lines and remove lines starting with "!"
-merged_unique_file = "firehol-ipset-all.txt"
+merged_unique_file = "firehol_1-3.txt"
 with open(merged_unique_file, "w", encoding="utf-8") as file:
     for line in sorted(merged_lines):  # Sort lines alphabetically
         file.write(line + "\n")
