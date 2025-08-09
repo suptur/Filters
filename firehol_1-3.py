@@ -38,7 +38,7 @@ for url in urls:
                 merged_lines.add(line.strip())
 
 # Save updated file with unique lines and remove lines starting with "!"
-merged_unique_file = "Adguard+Ublock-all.txt"
+merged_unique_file = "firehol_1-3.txt"
 with open(merged_unique_file, "w", encoding="utf-8") as file:
     for line in sorted(merged_lines):  # Sort lines alphabetically
         file.write(line + "\n")
