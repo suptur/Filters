@@ -1,4 +1,4 @@
-#Dns-Filterlist_with allow-list-.txt
+#Dns-Filterlist_with allow-list-.txt [adguard+ublock]
 
 
 https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/DutchFilter/sections/general_extensions.txt
