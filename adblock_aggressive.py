@@ -173,20 +173,20 @@ urls = [
 "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/ubol-filters.txt",
 
 ##############################   HaGeZi #########################################
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/popupads.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/anti.piracy.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.apple.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.amazon.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.huawei.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.winoffice.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.samsung.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.tiktok.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.tiktok.extended.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.tiktok.extended.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.roku.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.vivo.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.oppo-realme.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.xiaomi.txt
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/popupads.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/anti.piracy.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.apple.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.amazon.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.huawei.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.winoffice.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.samsung.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.tiktok.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.tiktok.extended.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.tiktok.extended.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.roku.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.vivo.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.oppo-realme.",
+"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.xiaomi.",
 
     # Add more URLs here
 ]
