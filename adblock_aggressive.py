@@ -188,6 +188,13 @@ urls = [
 "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.oppo-realme.",
 "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/native.xiaomi.",
 
+####################################### EASY-list  #######################################
+"https://easylist.to/easylist/easyprivacy.txt",
+"https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+"https://easylist.to/easylist/easylist.txt",
+"https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+"https://easylist.to/easylist/fanboy-social.txt",
+
     # Add more URLs here
 ]
 
