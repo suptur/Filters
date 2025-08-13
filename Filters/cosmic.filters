@@ -14,3 +14,32 @@ www.youtube.com##yt-button-shape
 www.google.com##.gb_Wf.gb_Pf.gb_0.gb_M
 www.google.com##.gb_z
 www.google.com##.SSwjIe.KxwPGc
+
+
+! https://apkpure.com
+apkpure.com##.nav-download-management
+
+! Jun 26, 2025 https://chatgpt.com
+chatgpt.com##.md\:screen-arch\:flex.screen-arch\:hidden.btn-secondary.relative.btn
+chatgpt.com##.gap-2.justify-center.items-center.flex > .btn-primary.relative.btn
+chatgpt.com##.group-focus-visible\:ring-2.rounded-full.justify-center.items-center.w-9.h-9.flex.touch\:w-10.touch\:h-10.group-hover\:bg-token-interactive-bg-secondary-selected
+chatgpt.com##.dark\:bg-token-main-surface-secondary.text-token-text-primary.bg-token-main-surface-primary.border-token-border-default.md\:items-center.shadow-xxs.dark\:border-transparent.lg\:mx-auto.\[text-wrap\:pretty\].text-sm.pe-3.ps-5.py-4.border.rounded-3xl.gap-4.items-start.w-full.flex
+
+!https://apkpure.com
+apkpure.com##.right_apkpure.module.aegon
+
+! https://scamalytics.com
+||*.scamalytics.com/images/svg/subtle-prism_2.svg$image
+||scamalytics.com/images/svg/subtle-prism_2.svg$image
+
+! https://www.speedtest.net
+www.speedtest.net##.lower-content-blend.lower-content
+www.speedtest.net##.footer
+www.speedtest.net##.u-c.pure-u-lg-4-5.pure-u-sm-2-5.pure-u-1
+
+! https://duckduckgo.com
+duckduckgo.com##.center_root___q8wn.minimalHomepageDesktopCta_minimalHomepageDesktopCtaWrapper__vn9w5
+duckduckgo.com##.center_intrinsic__Gt_PZ.center_root___q8wn > div
+
+
+
